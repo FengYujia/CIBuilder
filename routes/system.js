@@ -11,7 +11,7 @@ var ok = require('../models/server/throwCode').ok;
 //1、系统根页面
 router.get('/', function(req, res, next) {
 	res.render('index', {
-		title: 'storeOrdersSystem',
+		title: 'CIBuilder',
 		languege: global.languege
 	});
 });
