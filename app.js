@@ -48,6 +48,7 @@ app.use((err, req, res, next) => {
 	if (err.status === 404) {
 		res.render('error');
 	}else{
+		console.error(err);
 		return throwErrCode(res,500);
 	}
 });
