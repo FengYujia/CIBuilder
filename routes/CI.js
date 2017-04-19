@@ -9,10 +9,12 @@ const throwErrCode = require('../models/server/throwCode').throwErrCode;
 const ok = require('../models/server/throwCode').ok;
 
 //1、构建测试环境
-router.get('/dev/builder', function(req, res, next) {
+router.post('/dev/builder', function(req, res, next) {
 	let openAndPull = '';
 	for (let i = 0; i < scriptPath.gitPath.length; i++) {
-		openAndPull += `#cd ${scriptPath.gitPath[i]} \n`;
+		openAndPull += `cd ${scriptPath.gitPath[i]} \n`;
+		openAndPull += `git checkout develop \n`;
+		openAndPull += `git pull origin develop \n`;
 	}
 	let command = `${scriptPath.restartScript} ${openAndPull}`;
 	let execScript = new Promise((resolve, reject) => {
@@ -31,7 +33,7 @@ router.get('/dev/builder', function(req, res, next) {
 		});
 });
 
-router.get('/pro/builder', function(req, res, next) {
+router.post('/pro/builder', function(req, res, next) {
 	return ok(res);
 });
 
