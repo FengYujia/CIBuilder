@@ -28,10 +28,8 @@ router.post('/dev/builder', function(req, res, next) {
 		projectName += ` ${script.projectName[i]}`;
 	}
 	openAndPull += `pm2 reload ${projectName}\n`;
-	console.log(openAndPull);
 	let execScript = new Promise((resolve, reject) => {
 		exec(openAndPull, (err, stdout, stderr) => {
-			// console.log(err, stdout, stderr);
 			if (err) {
 				return reject(err, stderr);
 			}
