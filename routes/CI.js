@@ -22,7 +22,7 @@ router.post('/dev/builder', function(req, res, next) {
 	let command = `${scriptPath.restartScript} ${openAndPull}`;
 	let execScript = new Promise((resolve, reject) => {
 		exec(command, (err, stdout, stderr) => {
-			console.log(err,stdout,strerr);
+			console.log(err,stdout,stderr);
 			if (err) {
 				return reject(err, stderr);
 			}
