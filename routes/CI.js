@@ -4,7 +4,8 @@ const express = require('express');
 const router = express.Router();
 const exec = require('child_process').exec;
 
-const scriptPath = require('../config').config.scriptPath;
+const script = require('../config').config.script;
+const scriptPath = '../shellScript/';
 const throwErrCode = require('../models/server/throwCode').throwErrCode;
 const ok = require('../models/server/throwCode').ok;
 
@@ -19,10 +20,11 @@ router.post('/dev/builder', function(req, res, next) {
 		openAndPull += `git checkout develop \n`;
 		openAndPull += `git pull origin develop \n`;
 	}
-	let command = `${scriptPath.restartScript} ${openAndPull}`;
+	let command = `${scriptPath}${scriptPath.restartScript} ${openAndPull}`;
+	console.log(commamd);
 	let execScript = new Promise((resolve, reject) => {
 		exec(command, (err, stdout, stderr) => {
-			console.log(err,stdout,stderr);
+			// console.log(err, stdout, stderr);
 			if (err) {
 				return reject(err, stderr);
 			}
