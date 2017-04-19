@@ -3,6 +3,6 @@ echo "shell begin"
 
 $1
 
-pm2 restart all
+pm2 reload all
 
 echo "shell end"
