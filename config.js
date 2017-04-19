@@ -38,6 +38,6 @@ exports.config = {
 	db: db[process.env.ENV === 'product' ? process.env.ENV : 'dev'],
 	scriptPath: {
 		'restartScript': './shellScripts/shell.sh',
-		'gitPath': ['/data/website/storeOrdersSystem', 'asasff']
+		'gitPath': ['/data/website/storeOrdersSystem']
 	}
 };
