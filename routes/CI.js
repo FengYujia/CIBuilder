@@ -10,15 +10,19 @@ const ok = require('../models/server/throwCode').ok;
 
 //1、构建测试环境
 router.post('/dev/builder', function(req, res, next) {
+	let userName = req.body.user_name;
+	let commitId = req.body.after;
 	let openAndPull = '';
 	for (let i = 0; i < scriptPath.gitPath.length; i++) {
-		openAndPull += `cd ${scriptPath.gitPath[i]} \n`;
+		openAndPull += `
+		cd ${scriptPath.gitPath[i]} \n`;
 		openAndPull += `git checkout develop \n`;
 		openAndPull += `git pull origin develop \n`;
 	}
 	let command = `${scriptPath.restartScript} ${openAndPull}`;
 	let execScript = new Promise((resolve, reject) => {
 		exec(command, (err, stdout, stderr) => {
+			console.log(err,stdout,strerr);
 			if (err) {
 				return reject(err, stderr);
 			}
@@ -26,7 +30,7 @@ router.post('/dev/builder', function(req, res, next) {
 		});
 	});
 	execScript.then((result) => {
-			return ok(res, req.originalUrl, result);
+			return ok(res, req.originalUrl, req.body);
 		})
 		.catch((err) => {
 			return throwErrCode(res, '400', req.originalUrl, err);
