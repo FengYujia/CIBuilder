@@ -21,7 +21,7 @@ router.post('/dev/builder', function(req, res, next) {
 		openAndPull += `git pull origin develop \n`;
 	}
 	let command = `${scriptPath}${script.restartScript} ${openAndPull}`;
-	console.log(commamd);
+	console.log(command);
 	let execScript = new Promise((resolve, reject) => {
 		exec(command, (err, stdout, stderr) => {
 			// console.log(err, stdout, stderr);
