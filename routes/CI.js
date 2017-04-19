@@ -14,13 +14,13 @@ router.post('/dev/builder', function(req, res, next) {
 	let userName = req.body.user_name;
 	let commitId = req.body.after;
 	let openAndPull = '';
-	for (let i = 0; i < scriptPath.gitPath.length; i++) {
+	for (let i = 0; i < script.gitPath.length; i++) {
 		openAndPull += `
-		cd ${scriptPath.gitPath[i]} \n`;
+		cd ${script.gitPath[i]} \n`;
 		openAndPull += `git checkout develop \n`;
 		openAndPull += `git pull origin develop \n`;
 	}
-	let command = `${scriptPath}${scriptPath.restartScript} ${openAndPull}`;
+	let command = `${scriptPath}${script.restartScript} ${openAndPull}`;
 	console.log(commamd);
 	let execScript = new Promise((resolve, reject) => {
 		exec(command, (err, stdout, stderr) => {
