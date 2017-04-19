@@ -20,7 +20,7 @@ router.post('/dev/builder', function(req, res, next) {
 		openAndPull += `git checkout develop \n`;
 		openAndPull += `git pull origin develop \n`;
 	}
-	let openAndPull += `pm2 reload all\n`;
+	openAndPull += `pm2 reload all\n`;
 	console.log(openAndPull);
 	let execScript = new Promise((resolve, reject) => {
 		exec(openAndPull, (err, stdout, stderr) => {
