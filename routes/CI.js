@@ -37,10 +37,10 @@ router.post('/dev/builder', function(req, res, next) {
 		});
 	});
 	execScript.then((result) => {
-			return ok(res, req.originalUrl, req.body);
+			return ok(res, req.body);
 		})
 		.catch((err) => {
-			return throwErrCode(res, '400', req.originalUrl, err);
+			return throwErrCode(res, '400', err);
 		});
 });
 

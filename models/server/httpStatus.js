@@ -4,7 +4,8 @@ exports.httpStatus = {
 	'CN': {
 		'errMsg': {
 			'500': '对不起,服务端出错...',
-			'501': '对不起,API返回值Key错误'
+			'501': '对不起,API返回值Key错误.',
+			'502': '对不起,API状态码或错误信息定义错误.'
 		},
 		'system': {
 			'languegeSelection': {
@@ -25,7 +26,8 @@ exports.httpStatus = {
 	'EN': {
 		'errMsg': {
 			'500': 'sorry, the server error...',
-			'501': 'Sorry, API returns an error value Key'
+			'501': 'Sorry, API returns an error value Key.',
+			'502': 'Sorry, API status code or error messege is incorrectly defined.'
 		},
 		'system': {
 			'languegeSelection': {

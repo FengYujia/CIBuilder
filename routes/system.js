@@ -18,14 +18,14 @@ router.get('/', function(req, res, next) {
 //2、系统语言选择
 router.post('/system/languegeSelection', function(req, res, next) {
 	if (!req.body.languege) {
-		return throwErrCode(res,'400', req.originalUrl);
+		return throwErrCode(res, '400');
 	}
 	let languege = (req.body.languege).toUpperCase();
 	if (config.languagesSuport.indexOf(languege) < 0) {
-		return throwErrCode(res,'401', req.originalUrl);
+		return throwErrCode(res, '401');
 	}
 	global.language = languege;
-	return ok(res,req.originalUrl,null);
+	return ok(res, null);
 });
 
 module.exports = router;

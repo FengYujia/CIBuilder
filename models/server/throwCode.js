@@ -30,7 +30,7 @@ var getMsg = (code, originalUrl) => {
 };
 
 //1、丢出错误信息
-exports.throwErrCode = (res, status, originalUrl, data) => {
+exports.throwErrCode = (res, status, data) => {
 	let code = '';
 	let errMsg = '';
 	if (!status) {
@@ -41,20 +41,20 @@ exports.throwErrCode = (res, status, originalUrl, data) => {
 			httpStatus[global.language].errMsg['500']);
 	} else {
 		code = status;
-		errMsg = getMsg(code, originalUrl);
+		errMsg = getMsg(code, res.req.originalUrl);
 	}
 	let output = {
 		code: code,
-		msg: errMsg,
-		data: data,
+		msg: errMsg || httpStatus[global.language].errMsg['502'],
+		data: data || '',
 		localIp: localIp
 	};
 	res.send(output);
 };
 
 //2、返回正确信息
-exports.ok = (res, originalUrl, data) => {
-	let successMsg = getMsg('200', originalUrl);
+exports.ok = (res, data) => {
+	let successMsg = getMsg('200', res.req.originalUrl);
 	let output = {
 		code: '200',
 		msg: successMsg || '',
