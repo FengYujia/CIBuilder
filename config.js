@@ -38,7 +38,7 @@ exports.config = {
 	db: db[process.env.ENV === 'product' ? process.env.ENV : 'dev'],
 	script: {
 		// 'restartScript': 'shell.sh',
-		'gitPath': ['/data/website/storeOrdersSystem'],
+		'gitPath': ['/data/website/'],
 		'projectName':['storeOrdersSystem']
 	}
 };

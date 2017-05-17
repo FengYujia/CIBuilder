@@ -13,20 +13,18 @@ const ok = require('../models/server/throwCode').ok;
 router.post('/dev/builder', function(req, res, next) {
 	let userName = req.body.user_name;
 	let commitId = req.body.after;
+	let projectName = req.body.name || '';
+	console.log(req.body);
 
 	//1、打开文件夹以及拉取
 	let openAndPull = '';
 	for (let i = 0; i < script.gitPath.length; i++) {
 		openAndPull += `
-		cd ${script.gitPath[i]} \n`;
+		cd ${script.gitPath[i]}'/'${projectName} \n`;
 		openAndPull += `git checkout develop \n`;
 		openAndPull += `git pull origin develop \n`;
 	}
 	//2、重启pm2
-	let projectName = '';
-	for (let i = 0; i < script.projectName.length; i++) {
-		projectName += ` ${script.projectName[i]}`;
-	}
 	openAndPull += `pm2 reload ${projectName}\n`;
 	let execScript = new Promise((resolve, reject) => {
 		exec(openAndPull, (err, stdout, stderr) => {
